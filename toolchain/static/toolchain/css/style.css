@@ -1,0 +1,252 @@
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgb(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgb(69, 162, 258, 0.2);
+    border-radius: 10px;
+}
+
+
+
+body{
+    background-color: #e6e6e6;
+}
+
+.page .sidebar {
+    height: 100vh;
+    width: 250px;
+    background: linear-gradient(35deg, #66fcf1, #45a29e);
+    top: 0;
+    left: 0;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.page .content {
+    width: 100%;
+    display: block;
+    margin-left: 250px;
+    position: fixed;
+
+}
+
+.page .sidebar-header{
+    padding: 10px 15px;
+}
+
+.page .sidebar-logo-container{
+    background-color: rgb(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: flex;
+}
+
+.page .logo-container{
+    max-width: 45px;
+}
+
+.page .logo-sidebar{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.page .name-sidebar{
+    padding: 0;
+    margin: 10px 0px -4px 20px;
+}
+
+.page .name{
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.navigation-list{
+    list-style-type: none;
+    padding: 0px 18px;
+    margin-top: 40px;
+}
+
+.navigation-list-item{
+    padding: 10px 18px;
+    margin: 12px 0px;
+    border-radius: 10px;
+}
+
+.navigation-list-item:hover {
+    background: rgb(0, 0, 0, 0.05);
+    box-shadow: 0 0 0.4em rgb(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.navigation-list-item.active {
+    background: rgb(0, 0, 0, 0.1);
+    box-shadow: 0 0 0.4em rgb(255, 255, 255, 0.2);
+}
+
+.navigation-link{
+    color: rgb(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.navigation-list-item:hover .navigation-link{
+    color: rgb(255, 255, 255, 0.7);
+}
+
+.navigation-list-item.active .navigation-link{
+    color: rgb(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+.navigation-link i {
+    font-size: 16px;
+}
+
+.navigationBar{
+    background-color: white;
+    height: 70px;
+    width: 100vw;
+}
+
+.table-list-container{
+    margin-top: 5px;
+    width: 250px;
+    height: 100vh;
+    display: inline-block;
+    float: left;
+    border-right: 1px solid rgb(0, 0, 0, 0.2);
+
+
+}
+
+.header-table{
+    font-size: 24px;
+    text-align: center;
+}
+
+.table-list{
+    list-style:none;
+    margin: 0;
+    padding: 0px 20px 0px 20px;
+}
+
+.table-list-item{
+    text-align: left;
+    padding: 3px;
+    /*border-bottom: 1px solid rgb(0, 0, 0, 0.2);*/
+}
+
+.table-list-item:hover{
+    background: rgb(0, 0, 0, 0.05);
+    box-shadow: 0 0 0.4em rgb(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.table-list-item:hover .table-link{
+    color: grey;
+}
+
+.table-list-item.active {
+    background: rgb(0, 0, 0, 0.1);
+    box-shadow: 0 0 0.4em rgb(255, 255, 255, 0.2);
+}
+
+.table-link{
+    text-decoration: none;
+    color: black;
+}
+
+.table-container {
+    float: left;
+    width: 1250px;
+    height: 100vh;
+    position: absolute;
+    display: inline-block;
+
+}
+
+.header-selected-table{
+    font-size: 24px;
+    margin-left: 600px;
+
+}
+
+.table {
+    display: none;
+    table-layout:auto;
+    white-space: nowrap;
+    width: 1200px;
+    margin-left: 50px;
+    overflow-x: scroll;
+    text-align: left;
+}
+.table th {
+    padding: 0 15px;
+}
+.table td {
+    padding: 0 15px;
+}
+
+/*preprocessing*/
+
+.progress-container {
+    width: 100%;
+    height: 120px;
+
+}
+
+.progress{
+    height: 120px;
+    background-color: #e6e6e6;
+    margin-left: 150px
+}
+
+.progress li {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 50px;
+    margin: 10px 100px;
+    background: dodgerblue;
+    display: inline-block;
+    color: #ffffff;
+    position: relative;
+}
+
+.progress li::before{
+    content: '';
+    width: 100px;
+    height: 100px;
+    color: #f80000;
+    z-index: -1;
+}
+
+.progress li:first-child::before {
+  display: none;
+}
+
+.progress .active {
+  background: dodgerblue;
+}
+
+.progress .active ~ li {
+  background: lightblue;
+}
+
+.progress .active ~ li::before {
+  background: lightblue;
+}
+
+
+

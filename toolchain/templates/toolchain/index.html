@@ -1,0 +1,722 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="{% static "toolchain/css/style.css" %}">
+      <script>
+          var spalten = {{spalten}};
+      </script>
+      <script src="{% static "toolchain/js/script.js"%}"></script>
+    <title>Start</title>
+  </head>
+  <body>
+
+    <div class="page">
+
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo-container">
+                    <div class="logo-container">
+                        <img class="logo-sidebar" src="{% static "toolchain/img/logo.png" %}">
+                    </div>
+                    <div class="name-sidebar">
+                        <p class="name">
+                            Toolchain
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-body">
+                <ul class="navigation-list">
+                    <li class="navigation-list-item active">
+                        <a class="navigation-link" href="/start">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                <div class="col-10">
+                                    Start
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navigation-list-item">
+                        <a class="navigation-link" href="/preprocessing">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <div class="col-10">
+                                    Preprocessing
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navigation-list-item">
+                        <a class="navigation-link" href="/">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fas fa-chart-area"></i>
+                                </div>
+                                <div class="col-10">
+                                    Visualisation
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navigation-list-item">
+                        <a class="navigation-link" href="/">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="col-10">
+                                    Machine Learning
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <hr style="margin-top: 30px; color: white">
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="navigationBar">
+            </div>
+
+            <div class="table-list-container">
+                <div class="header-table">
+                    <p>Tables</p>
+                </div>
+                <hr style="margin-left:20px; margin-right: 20px">
+                <ul class="table-list">
+                {% for table in table_list %}
+                    <li class="table-list-item">
+                        <a class="table-link" onclick="loadtable(this)" href="#">
+                            {{ table }}
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <div class="table-container">
+                <div class="header-selected-table">
+                    <p id="tablename"></p>
+                </div>
+                <div class="table" id="istwerte">
+                     <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>zaehler </th>
+                                <th>tist_zone_1</th>
+                                <th>tist_zone_2 </th>
+                                <th>tist_zone_3</th>
+                                <th>tist_zone_4</th>
+                                <th>tist_kvz</th>
+                                <th>t_abgas_vor_kuehlluft</th>
+                                <th>t_abgas_regel_kuehlluft</th>
+                                <th>t_abgas_nach_reku</th>
+                                <th>t_abgas_nach_ventilator</th>
+                                <th>t_luft_vor_reku</th>
+                                <th>t_luft_nach_reku</th>
+                                <th>o2_kvz</th>
+                                <th>co_kvz</th>
+                                <th>o2_zone1</th>
+                                <th>o2_zone2</th>
+                                <th>o2_zone3</th>
+                                <th>o2_zone4</th>
+                                <th>o2_vor_reku</th>
+                                <th>o2_nach_reku</th>
+                                <th>ofenraumdruck_zone_1</th>
+                                <th>ofenraumdruck_zone_2</th>
+                                <th>ofenraumdruck_zone_3</th>
+                                <th>ofenraumdruck_zone_4</th>
+                                <th>tsoll_akt_zone_1</th>
+                                <th>tsoll_akt_zone_2</th>
+                                <th>tsoll_akt_zone_3</th>
+                                <th>tsoll_akt_zone_4</th>
+                                <th>tsoll_luft_ausblas</th>
+                                <th>tsoll_abgas_kuehl</th>
+                                <th>status_zone_1</th>
+                                <th>status_zone_2</th>
+                                <th>status_zone_3</th>
+                                <th>status_zone_4</th>
+                                <th>status_strasse</th>
+                                <th>f_luft_z1</th>
+                                <th>f_luft_z2</th>
+                                <th>f_luft_z3</th>
+                                <th>f_luft_z4</th>
+                                <th>f_gas_z1</th>
+                                <th>f_gas_z2</th>
+                                <th>f_gas_z3</th>
+                                <th>f_gas_z4</th>
+                                <th>stat_z1_r1_br1</th>
+                                <th>stat_z1_r1_br2</th>
+                                <th>stat_z1_r1_br3</th>
+                                <th>stat_z1_r1_br4</th>
+                                <th>stat_z1_r1_br5</th>
+                                <th>stat_z1_r2_br1</th>
+                                <th>stat_z1_r2_br2</th>
+                                <th>stat_z1_r2_br3</th>
+                                <th>stat_z1_r2_br4</th>
+                                <th>stat_z1_r2_br5</th>
+                                <th>stat_z1_r3_br1</th>
+                                <th>stat_z1_r3_br2</th>
+                                <th>stat_z1_r3_br3</th>
+                                <th>stat_z1_r3_br4</th>
+                                <th>stat_z1_r3_br5</th>
+                                <th>stat_z1_r4_br1</th>
+                                <th>stat_z1_r4_br2</th>
+                                <th>stat_z1_r4_br3</th>
+                                <th>stat_z1_r4_br4</th>
+                                <th>stat_z1_r4_br5</th>
+                                <th>stat_z2_r1_br1</th>
+                                <th>stat_z2_r1_br2</th>
+                                <th>stat_z2_r1_br3</th>
+                                <th>stat_z2_r1_br4</th>
+                                <th>stat_z2_r1_br5</th>
+                                <th>stat_z2_r2_br1</th>
+                                <th>stat_z2_r2_br2</th>
+                                <th>stat_z2_r2_br3</th>
+                                <th>stat_z2_r2_br4</th>
+                                <th>stat_z2_r2_br5</th>
+                                <th>stat_z2_r3_br1</th>
+                                <th>stat_z2_r3_br2</th>
+                                <th>stat_z2_r3_br3</th>
+                                <th>stat_z2_r3_br4</th>
+                                <th>stat_z2_r3_br5</th>
+                                <th>stat_z2_r4_br1</th>
+                                <th>stat_z2_r4_br2</th>
+                                <th>stat_z2_r4_br3</th>
+                                <th>stat_z2_r4_br4</th>
+                                <th>stat_z2_r4_br5</th>
+                                <th>stat_z3_r1_br1</th>
+                                <th>stat_z3_r1_br2</th>
+                                <th>stat_z3_r1_br3</th>
+                                <th>stat_z3_r1_br4</th>
+                                <th>stat_z3_r1_br5</th>
+                                <th>stat_z3_r2_br1</th>
+                                <th>stat_z3_r2_br2</th>
+                                <th>stat_z3_r2_br3</th>
+                                <th>stat_z3_r2_br4</th>
+                                <th>stat_z3_r2_br5</th>
+                                <th>stat_brenner</th>
+                                <th>bl_eintragetemp</th>
+                                <th>status_betrieb_zone_1</th>
+                                <th>status_betrieb_zone_2</th>
+                                <th>status_betrieb_zone_3</th>
+                                <th>status_betrieb_zone_4</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data1 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.zaehler }}</td>
+                                <td>{{ item.tist_zone_1 }}</td>
+                                <td>{{ item.tist_zone_2  }}</td>
+                                <td>{{ item.tist_zone_3 }}</td>
+                                <td>{{ item.tist_zone_4 }}</td>
+                                <td>{{ item.tist_kvz }}</td>
+                                <td>{{ item.t_abgas_vor_kuehlluft }}</td>
+                                <td>{{ item.t_abgas_regel_kuehlluft }}</td>
+                                <td>{{ item.t_abgas_nach_reku }}</td>
+                                <td>{{ item.t_abgas_nach_ventilator }}</td>
+                                <td>{{ item.t_luft_vor_reku }}</td>
+                                <td>{{ item.t_luft_nach_reku }}</td>
+                                <td>{{ item.o2_kvz }}</td>
+                                <td>{{ item.co_kvz }}</td>
+                                <td>{{ item.o2_zone1 }}</td>
+                                <td>{{ item.o2_zone2 }}</td>
+                                <td>{{ item.o2_zone3 }}</td>
+                                <td>{{ item.o2_zone4 }}</td>
+                                <td>{{ item.o2_vor_reku }}</td>
+                                <td>{{ item.o2_nach_reku }}</td>
+                                <td>{{ item.ofenraumdruck_zone_1 }}</td>
+                                <td>{{ item.ofenraumdruck_zone_2 }}</td>
+                                <td>{{ item.ofenraumdruck_zone_3 }}</td>
+                                <td>{{ item.ofenraumdruck_zone_4 }}</td>
+                                <td>{{ item.tsoll_akt_zone_1 }}</td>
+                                <td>{{ item.tsoll_akt_zone_2 }}</td>
+                                <td>{{ item.tsoll_akt_zone_3 }}</td>
+                                <td>{{ item.tsoll_akt_zone_4 }}</td>
+                                <td>{{ item.tsoll_luft_ausblas }}</td>
+                                <td>{{ item.tsoll_abgas_kuehl }}</td>
+                                <td>{{ item.status_zone_1 }}</td>
+                                <td>{{ item.status_zone_2 }}</td>
+                                <td>{{ item.status_zone_3 }}</td>
+                                <td>{{ item.status_zone_4 }}</td>
+                                <td>{{ item.status_strasse }}</td>
+                                <td>{{ item.f_luft_z1 }}</td>
+                                <td>{{ item.f_luft_z2 }}</td>
+                                <td>{{ item.f_luft_z3 }}</td>
+                                <td>{{ item.f_luft_z4 }}</td>
+                                <td>{{ item.f_gas_z1 }}</td>
+                                <td>{{ item.f_gas_z2 }}</td>
+                                <td>{{ item.f_gas_z3 }}</td>
+                                <td>{{ item.f_gas_z4 }}</td>
+                                <td>{{ item.stat_z1_r1_br1 }}</td>
+                                <td>{{ item.stat_z1_r1_br2 }}</td>
+                                <td>{{ item.stat_z1_r1_br3 }}</td>
+                                <td>{{ item.stat_z1_r1_br4 }}</td>
+                                <td>{{ item.stat_z1_r1_br5 }}</td>
+                                <td>{{ item.stat_z1_r2_br1 }}</td>
+                                <td>{{ item.stat_z1_r2_br2 }}</td>
+                                <td>{{ item.stat_z1_r2_br3 }}</td>
+                                <td>{{ item.stat_z1_r2_br4 }}</td>
+                                <td>{{ item.stat_z1_r2_br5 }}</td>
+                                <td>{{ item.stat_z1_r3_br1 }}</td>
+                                <td>{{ item.stat_z1_r3_br2 }}</td>
+                                <td>{{ item.stat_z1_r3_br3 }}</td>
+                                <td>{{ item.stat_z1_r3_br4 }}</td>
+                                <td>{{ item.stat_z1_r3_br5 }}</td>
+                                <td>{{ item.stat_z1_r4_br1 }}</td>
+                                <td>{{ item.stat_z1_r4_br2 }}</td>
+                                <td>{{ item.stat_z1_r4_br3 }}</td>
+                                <td>{{ item.stat_z1_r4_br4 }}</td>
+                                <td>{{ item.stat_z1_r4_br5 }}</td>
+                                <td>{{ item.stat_z2_r1_br1 }}</td>
+                                <td>{{ item.stat_z2_r1_br2 }}</td>
+                                <td>{{ item.stat_z2_r1_br3 }}</td>
+                                <td>{{ item.stat_z2_r1_br4 }}</td>
+                                <td>{{ item.stat_z2_r1_br5 }}</td>
+                                <td>{{ item.stat_z2_r2_br1 }}</td>
+                                <td>{{ item.stat_z2_r2_br2 }}</td>
+                                <td>{{ item.stat_z2_r2_br3 }}</td>
+                                <td>{{ item.stat_z2_r2_br4 }}</td>
+                                <td>{{ item.stat_z2_r2_br5 }}</td>
+                                <td>{{ item.stat_z2_r3_br1 }}</td>
+                                <td>{{ item.stat_z2_r3_br2 }}</td>
+                                <td>{{ item.stat_z2_r3_br3 }}</td>
+                                <td>{{ item.stat_z2_r3_br4 }}</td>
+                                <td>{{ item.stat_z2_r3_br5 }}</td>
+                                <td>{{ item.stat_z2_r4_br1 }}</td>
+                                <td>{{ item.stat_z2_r4_br2 }}</td>
+                                <td>{{ item.stat_z2_r4_br3 }}</td>
+                                <td>{{ item.stat_z2_r4_br4 }}</td>
+                                <td>{{ item.stat_z2_r4_br5 }}</td>
+                                <td>{{ item.stat_z3_r1_br1 }}</td>
+                                <td>{{ item.stat_z3_r1_br2 }}</td>
+                                <td>{{ item.stat_z3_r1_br3 }}</td>
+                                <td>{{ item.stat_z3_r1_br4 }}</td>
+                                <td>{{ item.stat_z3_r1_br5 }}</td>
+                                <td>{{ item.stat_z3_r2_br1 }}</td>
+                                <td>{{ item.stat_z3_r2_br2 }}</td>
+                                <td>{{ item.stat_z3_r2_br3 }}</td>
+                                <td>{{ item.stat_z3_r2_br4 }}</td>
+                                <td>{{ item.stat_z3_r2_br5 }}</td>
+                                <td>{{ item.stat_brenner }}</td>
+                                <td>{{ item.bl_eintragetemp }}</td>
+                                <td>{{ item.status_betrieb_zone_1 }}</td>
+                                <td>{{ item.status_betrieb_zone_2 }}</td>
+                                <td>{{ item.status_betrieb_zone_3 }}</td>
+                                <td>{{ item.status_betrieb_zone_4 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                     </table>
+                </div>
+                <div class="table" id="beziehungen_variablen">
+                     <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>variablen_index</th>
+                                <th>variablen</th>
+                                <th>beziehung</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data2 %}
+                            <tr>
+                                <td>{{ item.variablen_index }}</td>
+                                <td>{{ item.variablen }}</td>
+                                <td>{{ item.beziehung }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                     </table>
+                </div>
+                <div class="table" id="brenner_ofenzone_1">
+                     <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>stat_z1_r1_br1</th>
+                                <th>stat_z1_r1_br2</th>
+                                <th>stat_z1_r1_br3</th>
+                                <th>stat_z1_r1_br4</th>
+                                <th>stat_z1_r1_br5</th>
+                                <th>stat_z1_r2_br1</th>
+                                <th>stat_z1_r2_br2</th>
+                                <th>stat_z1_r2_br3</th>
+                                <th>stat_z1_r2_br4</th>
+                                <th>stat_z1_r2_br5</th>
+                                <th>stat_z1_r3_br1</th>
+                                <th>stat_z1_r3_br2</th>
+                                <th>stat_z1_r3_br3</th>
+                                <th>stat_z1_r3_br4</th>
+                                <th>stat_z1_r3_br5</th>
+                                <th>stat_z1_r4_br1</th>
+                                <th>stat_z1_r4_br2</th>
+                                <th>stat_z1_r4_br3</th>
+                                <th>stat_z1_r4_br4</th>
+                                <th>stat_z1_r4_br5</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data3 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.stat_z1_r1_br1 }}</td>
+                                <td>{{ item.stat_z1_r1_br2 }}</td>
+                                <td>{{ item.stat_z1_r1_br3 }}</td>
+                                <td>{{ item.stat_z1_r1_br4 }}</td>
+                                <td>{{ item.stat_z1_r1_br5 }}</td>
+                                <td>{{ item.stat_z1_r2_br1 }}</td>
+                                <td>{{ item.stat_z1_r2_br2 }}</td>
+                                <td>{{ item.stat_z1_r2_br3 }}</td>
+                                <td>{{ item.stat_z1_r2_br4 }}</td>
+                                <td>{{ item.stat_z1_r2_br5 }}</td>
+                                <td>{{ item.stat_z1_r3_br1 }}</td>
+                                <td>{{ item.stat_z1_r3_br2 }}</td>
+                                <td>{{ item.stat_z1_r3_br3 }}</td>
+                                <td>{{ item.stat_z1_r3_br4 }}</td>
+                                <td>{{ item.stat_z1_r3_br5 }}</td>
+                                <td>{{ item.stat_z1_r4_br1 }}</td>
+                                <td>{{ item.stat_z1_r4_br2 }}</td>
+                                <td>{{ item.stat_z1_r4_br3 }}</td>
+                                <td>{{ item.stat_z1_r4_br4 }}</td>
+                                <td>{{ item.stat_z1_r4_br5 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                     </table>
+                </div>
+                <div class="table" id="brenner_ofenzone_2">
+                    <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>stat_z2_r1_br1</th>
+                                <th>stat_z2_r1_br2</th>
+                                <th>stat_z2_r1_br3</th>
+                                <th>stat_z2_r1_br4</th>
+                                <th>stat_z2_r1_br5</th>
+                                <th>stat_z2_r2_br1</th>
+                                <th>stat_z2_r2_br2</th>
+                                <th>stat_z2_r2_br3</th>
+                                <th>stat_z2_r2_br4</th>
+                                <th>stat_z2_r2_br5</th>
+                                <th>stat_z2_r3_br1</th>
+                                <th>stat_z2_r3_br2</th>
+                                <th>stat_z2_r3_br3</th>
+                                <th>stat_z2_r3_br4</th>
+                                <th>stat_z2_r3_br5</th>
+                                <th>stat_z2_r4_br1</th>
+                                <th>stat_z2_r4_br2</th>
+                                <th>stat_z2_r4_br3</th>
+                                <th>stat_z2_r4_br4</th>
+                                <th>stat_z2_r4_br5</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data4 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.stat_z2_r1_br1 }}</td>
+                                <td>{{ item.stat_z2_r1_br2 }}</td>
+                                <td>{{ item.stat_z2_r1_br3 }}</td>
+                                <td>{{ item.stat_z2_r1_br4 }}</td>
+                                <td>{{ item.stat_z2_r1_br5 }}</td>
+                                <td>{{ item.stat_z2_r2_br1 }}</td>
+                                <td>{{ item.stat_z2_r2_br2 }}</td>
+                                <td>{{ item.stat_z2_r2_br3 }}</td>
+                                <td>{{ item.stat_z2_r2_br4 }}</td>
+                                <td>{{ item.stat_z2_r2_br5 }}</td>
+                                <td>{{ item.stat_z2_r3_br1 }}</td>
+                                <td>{{ item.stat_z2_r3_br2 }}</td>
+                                <td>{{ item.stat_z2_r3_br3 }}</td>
+                                <td>{{ item.stat_z2_r3_br4 }}</td>
+                                <td>{{ item.stat_z2_r3_br5 }}</td>
+                                <td>{{ item.stat_z2_r4_br1 }}</td>
+                                <td>{{ item.stat_z2_r4_br2 }}</td>
+                                <td>{{ item.stat_z2_r4_br3 }}</td>
+                                <td>{{ item.stat_z2_r4_br4 }}</td>
+                                <td>{{ item.stat_z2_r4_br5 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table" id="brenner_ofenzone_3">
+                    <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>stat_z3_r1_br1</th>
+                                <th>stat_z3_r1_br2</th>
+                                <th>stat_z3_r1_br3</th>
+                                <th>stat_z3_r1_br4</th>
+                                <th>stat_z3_r1_br5</th>
+                                <th>stat_z3_r2_br1</th>
+                                <th>stat_z3_r2_br2</th>
+                                <th>stat_z3_r2_br3</th>
+                                <th>stat_z3_r2_br4</th>
+                                <th>stat_z3_r2_br5</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data5 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.stat_z3_r1_br1 }}</td>
+                                <td>{{ item.stat_z3_r1_br2 }}</td>
+                                <td>{{ item.stat_z3_r1_br3 }}</td>
+                                <td>{{ item.stat_z3_r1_br4 }}</td>
+                                <td>{{ item.stat_z3_r1_br5 }}</td>
+                                <td>{{ item.stat_z3_r2_br1 }}</td>
+                                <td>{{ item.stat_z3_r2_br2 }}</td>
+                                <td>{{ item.stat_z3_r2_br3 }}</td>
+                                <td>{{ item.stat_z3_r2_br4 }}</td>
+                                <td>{{ item.stat_z3_r2_br5 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table" id="konvektivzone">
+                    <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>tist_kvz</th>
+                                <th>o2_kvz</th>
+                                <th>co_kvz</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data6 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.tist_kvz }}</td>
+                                <td>{{ item.o2_kvz }}</td>
+                                <td>{{ item.co_kvz }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table" id="ofenzone_1">
+                    <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>tist_zone_1</th>
+                                <th>o2_zone1</th>
+                                <th>ofenraumdruck_zone_1</th>
+                                <th>tsoll_akt_zone_1</th>
+                                <th>status_zone_1</th>
+                                <th>f_luft_z1</th>
+                                <th>f_gas_z1</th>
+                                <th>status_betrieb_zone_1</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data7 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.tist_zone_1 }}</td>
+                                <td>{{ item.o2_zone1 }}</td>
+                                <td>{{ item.ofenraumdruck_zone_1 }}</td>
+                                <td>{{ item.tsoll_akt_zone_1 }}</td>
+                                <td>{{ item.status_zone_1 }}</td>
+                                <td>{{ item.f_luft_z1 }}</td>
+                                <td>{{ item.f_gas_z1 }}</td>
+                                <td>{{ item.status_betrieb_zone_1 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table" id="ofenzone_2">
+                    <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>tist_zone_2</th>
+                                <th>o2_zone1</th>
+                                <th>ofenraumdruck_zone_2</th>
+                                <th>tsoll_akt_zone_2</th>
+                                <th>status_zone_2</th>
+                                <th>f_luft_z2</th>
+                                <th>f_gas_z2</th>
+                                <th>status_betrieb_zone_2</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data8 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.tist_zone_2 }}</td>
+                                <td>{{ item.o2_zone1 }}</td>
+                                <td>{{ item.ofenraumdruck_zone_2 }}</td>
+                                <td>{{ item.tsoll_akt_zone_2 }}</td>
+                                <td>{{ item.status_zone_2 }}</td>
+                                <td>{{ item.f_luft_z2 }}</td>
+                                <td>{{ item.f_gas_z2 }}</td>
+                                <td>{{ item.status_betrieb_zone_2 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table" id="ofenzone_3">
+                    <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>tist_zone_3</th>
+                                <th>o2_zone1</th>
+                                <th>ofenraumdruck_zone_3</th>
+                                <th>tsoll_akt_zone_3</th>
+                                <th>status_zone_3</th>
+                                <th>f_luft_z3</th>
+                                <th>f_gas_z3</th>
+                                <th>status_betrieb_zone_3</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data9 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.tist_zone_3 }}</td>
+                                <td>{{ item.o2_zone1 }}</td>
+                                <td>{{ item.ofenraumdruck_zone_3 }}</td>
+                                <td>{{ item.tsoll_akt_zone_3 }}</td>
+                                <td>{{ item.status_zone_3 }}</td>
+                                <td>{{ item.f_luft_z3 }}</td>
+                                <td>{{ item.f_gas_z3 }}</td>
+                                <td>{{ item.status_betrieb_zone_3 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table" id="ofenzone_4">
+                    <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>tist_zone_4</th>
+                                <th>o2_zone1</th>
+                                <th>ofenraumdruck_zone_4</th>
+                                <th>tsoll_akt_zone_4</th>
+                                <th>status_zone_4</th>
+                                <th>f_luft_z4</th>
+                                <th>f_gas_z4</th>
+                                <th>status_betrieb_zone_4</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data10 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.tist_zone_4 }}</td>
+                                <td>{{ item.o2_zone1 }}</td>
+                                <td>{{ item.ofenraumdruck_zone_4 }}</td>
+                                <td>{{ item.tsoll_akt_zone_4 }}</td>
+                                <td>{{ item.status_zone_4 }}</td>
+                                <td>{{ item.f_luft_z4 }}</td>
+                                <td>{{ item.f_gas_z4 }}</td>
+                                <td>{{ item.status_betrieb_zone_4 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table" id="rekuperator">
+                    <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>t_abgas_vor_kuehlluft</th>
+                                <th>t_abgas_regel_kuehlluft</th>
+                                <th>t_abgas_nach_reku</th>
+                                <th>t_luft_vor_reku</th>
+                                <th>t_luft_nach_reku</th>
+                                <th>o2_vor_reku</th>
+                                <th>o2_nach_reku</th>
+                                <th>tsoll_luft_ausblas</th>
+                                <th>tsoll_abgas_kuehl</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data11 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.t_abgas_vor_kuehlluft }}</td>
+                                <td>{{ item.t_abgas_regel_kuehlluft }}</td>
+                                <td>{{ item.t_abgas_nach_reku }}</td>
+                                <td>{{ item.t_luft_vor_reku }}</td>
+                                <td>{{ item.t_luft_nach_reku }}</td>
+                                <td>{{ item.o2_vor_reku }}</td>
+                                <td>{{ item.o2_nach_reku }}</td>
+                                <td>{{ item.tsoll_luft_ausblas }}</td>
+                                <td>{{ item.tsoll_abgas_kuehl }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table" id="restwerte">
+                    <table style="width: 50%; overflow-x: scroll" >
+                        <thead>
+                            <tr>
+                                <th>toi</th>
+                                <th>t_abgas_nach_ventilator</th>
+                                <th>status_strasse</th>
+                                <th>bl_eintragetemp</th>
+                                <th>stat_brenner</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data12 %}
+                            <tr>
+                                <td>{{ item.toi }}</td>
+                                <td>{{ item.t_abgas_nach_ventilator }}</td>
+                                <td>{{ item.status_strasse }}</td>
+                                <td>{{ item.bl_eintragetemp }}</td>
+                                <td>{{ item.stat_brenner }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="button-container" id="buttoncontainer" style="margin-top: 800px; margin-left: 1500px;display: none">
+                <form >
+                    <button class="B1" id="B1" formaction="">
+                        Select Table
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  </body>
+</html>

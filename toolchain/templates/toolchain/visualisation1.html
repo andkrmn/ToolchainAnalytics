@@ -1,0 +1,150 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="{% static "toolchain/css/style.css" %}">
+      <script>
+          var spalten = {{spalten}};
+      </script>
+      <script src="{% static "toolchain/js/script.js"%}"></script>
+    <title>Visualisation</title>
+  </head>
+  <body>
+
+    <div class="page">
+
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo-container">
+                    <div class="logo-container">
+                        <img class="logo-sidebar" src="{% static "toolchain/img/logo.png" %}">
+                    </div>
+                    <div class="name-sidebar">
+                        <p class="name">
+                            Toolchain
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-body">
+                <ul class="navigation-list">
+                    <li class="navigation-list-item">
+                        <a class="navigation-link" href="/start">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                <div class="col-10">
+                                    Start
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navigation-list-item">
+                        <a class="navigation-link" href="/preprocessing">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <div class="col-10">
+                                    Preprocessing
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navigation-list-item active">
+                        <a class="navigation-link" href="/visualisation">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fas fa-chart-area"></i>
+                                </div>
+                                <div class="col-10">
+                                    Visualisation
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navigation-list-item">
+                        <a class="navigation-link" href="/">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="col-10">
+                                    Machine Learning
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <hr style="margin-top: 30px; color: white">
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="navigationBar">
+            </div>
+            <h2 style="margin-left: 120px">Plot Table</h2>
+            <div class="key-container" style="margin-left: 50px; margin-top: 30px">
+                <form action="/result">
+                    <label for="choose1">Choose key1:</label>
+                    <select name="key1">
+                        <option value="Temperatur Ofen">Temperatur Ofen</option>
+                        <option value="Temperatur Außerhalb">Temperatur Außerhalb</option>
+                        <option value="O2 Gehalt Ofen">O2 Gehalt Ofen</option>
+                        <option value="O2 Gehalt Peripherie">O2 Gehalt Peripherie</option>
+                        <option value="CO Gehalt Ofen">CO Gehalt Ofen</option>
+                        <option value="Druck Ofen">Druck Ofen</option>
+                        <option value="Volumenstrom Verbrennungsluft">Volumenstrom Verbrennungsluft</option>
+                        <option value="Volumenstrom Brenngas">Volumenstrom Brenngas</option>
+                        <option value="Temperatur Sollwerte">Temperatur Sollwerte</option>
+                        <option value="Variablen Umgebung">Variablen Umgebung</option>
+                    </select>
+                    <br><br>
+                    <label for="choose2">Choose key2:</label>
+                    <select name="key2" >
+                        <option value="Temperatur Ofen">Temperatur Ofen</option>
+                        <option value="Temperatur Außerhalb">Temperatur Außerhalb</option>
+                        <option value="O2 Gehalt Ofen">O2 Gehalt Ofen</option>
+                        <option value="O2 Gehalt Peripherie">O2 Gehalt Peripherie</option>
+                        <option value="CO Gehalt Ofen">CO Gehalt Ofen</option>
+                        <option value="Druck Ofen">Druck Ofen</option>
+                        <option value="Volumenstrom Verbrennungsluft">Volumenstrom Verbrennungsluft</option>
+                        <option value="Volumenstrom Brenngas">Volumenstrom Brenngas</option>
+                        <option value="Temperatur Sollwerte">Temperatur Sollwerte</option>
+                        <option value="Variablen Umgebung">Variablen Umgebung</option>
+                    </select>
+                    <br><br>
+                    <label for="choose3">Choose PlotType:</label>
+                    <select name="plot_type">
+                        <option value="Time Plot">Time Plot</option>
+                        <option value="Box Plot">Box Plot</option>
+                        <option value="Pair-Plot">Pair-Plot</option>
+                        <option value="Heatmap Plot">Heatmap Plot</option>
+                    </select>
+                    <br><br>
+                    <input type="submit" value="Submit">
+                    <br><br>
+                </form>
+                {% if chart %}
+                    <img style="margin-left: 500px;margin-top: -250px" src="data:image/png;base64, {{ chart|safe }}">
+                {% endif %}
+            </div>
+{#            {% if chart %}#}
+{#                <img src="data:image/png;base64, {{ chart|safe }}">#}
+{#            {% endif %}#}
+        </div>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  </body>
+</html>
